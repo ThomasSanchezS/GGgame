@@ -13,6 +13,7 @@ public class CameraMovement : MonoBehaviour
     public Camera playerCamera;
     public float lookSpeed = 2.0f;
     public float lookXLimit = 45.0f;
+    public Animator animate;
 
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
@@ -28,6 +29,8 @@ public class CameraMovement : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        animate = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -38,6 +41,17 @@ public class CameraMovement : MonoBehaviour
         Vector3 right = transform.TransformDirection(Vector3.right);
 
         bool isRunning = Input.GetKey(KeyCode.LeftShift);
+        if(isRunning == true){
+            animate.SetBool("Run", true);
+        } else{
+            animate.SetBool("Run", false);
+        }
+        bool isWalking = Input.GetKey(KeyCode.W); 
+        if(isWalking == true){
+            animate.SetBool("Walk", true);
+        } else{
+            animate.SetBool("Walk", false);
+        }
         float curSpeedX = canMove ? (isRunning ? runningSpeed : walkingSpeed) * Input.GetAxis("Vertical"): 0;
         float curSpeedY = canMove ? (isRunning ? runningSpeed : walkingSpeed) * Input.GetAxis("Horizontal"): 0;
         float movementDirectionY = moveDirection.y;
