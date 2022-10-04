@@ -23,10 +23,12 @@ public class GameManager : MonoBehaviour
           }
     }
 
-    /*public void GameOver(){
+    public void GameOver(){
         SceneManager.LoadScene("GameOver");
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
-
+/*
     public void Credits(){
         SceneManager.LoadScene("Credits");
     }

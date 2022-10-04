@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(CharacterController))]
 
@@ -27,8 +28,13 @@ public class CameraMovement : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        Scene scene = SceneManager.GetActiveScene();
+        if(scene.name == "Nivel1"){
+            Debug.Log("Active Scene is '" + scene.name + "'.");
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        } 
+            
 
         animate = GetComponent<Animator>();
     }

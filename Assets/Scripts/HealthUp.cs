@@ -38,11 +38,11 @@ public class HealthUp : MonoBehaviour {
 
             PlayerHealth player = collision.GetComponent<PlayerHealth>();
             if (player != null){
-
                 player.TakeHealth(HealthAmount);
-            }
+				AudioSource.PlayClipAtPoint(collectSound, transform.position);
+            }Destroy(gameObject);
         }
-        Destroy(gameObject);
+        
 	}
 
     
@@ -53,6 +53,7 @@ public class HealthUp : MonoBehaviour {
 			AudioSource.PlayClipAtPoint(collectSound, transform.position);
 		if(collectEffect)
 			Instantiate(collectEffect, transform.position, Quaternion.identity);
+			
 
 		//Below is space to add in your code for what happens based on the collectible type
 
